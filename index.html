@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet" />
+    <title>The Food</title>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="sidebar">
+        <li id="functionsBtn"><i class="ri-menu-line"></i></li>
+        <li id="homeBtn"><i class="ri-home-2-line active"></i></li>
+        <li><i class="ri-percent-line"></i></li>
+        <li><i class="ri-pie-chart-2-line"></i></li>
+        <li><i class="ri-mail-line"></i></li>
+        <li><i class="ri-notification-2-line"></i></li>
+        <li id="ordersBtn"><i class="ri-shopping-cart-2-line"></i></li><p class="number">0</p>
+        <li id="accountBtn"><i class="ri-account-circle-line"></i></li>
+      </ul>
+      <div id="all">
+        <div class="div functions">
+          <h2 class="title">Functions</h2>
+          <ul class="ul first">
+            <li class="informationBtn">
+              <i class="ri-information-line"></i> Information
+            </li>
+            <li><i class="ri-global-line"></i> Language</li>
+            <li class="orderHistoryBtn">
+              <i class="ri-time-line"></i> Order history
+            </li>
+          </ul>
+        </div>
+        <div class="div information">
+          <h2 class="title">Information</h2>
+          <ul class="ul second">
+            <li><i class="ri-phone-line"></i> +998 71 000 00 71</li>
+            <li>
+              <i class="ri-map-pin-line"></i> Tashkent, str. Amir Temur 15
+            </li>
+            <li><i class="ri-mail-fill"></i> F.P.D_77@gmail.com</li>
+            <li><i class="ri-global-line"></i> www.F.P.D_77.com</li>
+            <li>
+              <i class="ri-whatsapp-line"></i><i class="ri-instagram-line"></i
+              ><i class="ri-telegram-line"></i
+              ><i class="ri-facebook-box-line"></i>
+            </li>
+          </ul>
+        </div>
+        <div class="div orders">
+          <div class="bigContent">
+            <h2 class="title">Orders</h2>
+            <div class="img">
+              <img src="./images/breakfast.png" alt="" />
+            </div>
+            <div class="content">
+              <h2 class="title">No Order</h2>
+              <p>Go find the products you like</p>
+              <button id="removeModals">To Order</button>
+            </div>
+          </div>
+          <div class="ordersList">
+            <h2 class="title">
+              <i class="ri-arrow-left-line"></i> Orders #34562
+            </h2>
+            <div class="btns">
+              <button>Dine In</button>
+              <button>To Go</button>
+              <button>Delivery</button>
+            </div>
+            <div class="allOrders"></div>
+            <div class="disASub">
+              <div class="flex"><p class="key">Discount</p><p class="value">$0</p></div>
+              <div class="flex"><p class="key">Sub Total</p><p class="value subtotal">$ 0</p></div>
+            </div>
+            <button class="paymentBtn">Continue to Payment</button>
+          </div>
+        </div>
+        <div class="div account">
+          <h2 class="title">Profil</h2>
+          <div class="profile">
+            <div class="name">
+              <h2>
+                <span class="firstLetter">D</span>
+                <h3 class="userName">Denis</h3>
+              </h2>
+            </div>
+            <input type="text" class="editInput" placeholder="Change your name...">
+            <button id="edit">Edit profile</button>
+          </div>
+          <div class="orderHistoryBtn">
+            <i class="ri-time-line"></i> Order history
+          </div>
+        </div>
+        <div class="div orderHistory">
+          <h2 class="title">Order history</h2>
+          <ul class="ul">
+            <li>Orders #34562 <span>Tuesday, 2 Feb 2021</span></li>
+            <li>Orders #34561 <span>Monday, 1 Feb 2021</span></li>
+            <li>Orders #34560 <span>Sanday, 31 Jan 2021</span></li>
+            <li>Orders #34559 <span>Friday, 29 Jan 2021</span></li>
+            <li>Orders #34558 <span>Wednesday, 27 Jan 2021</span></li>
+            <li>Orders #34557 <span>Saturday, 23 Jan 2021</span></li>
+            <li>Orders #34556 <span>Wednesday, 20 Jan 2021</span></li>
+          </ul>
+        </div>
+      </div>
+      <main>
+        <header>
+          <div class="top">
+            <div class="name">
+              <h1>Jaegar Resto</h1>
+              <p id="date">Tuesday, 2 Feb 2021</p>
+            </div>
+            <div class="search">
+              <i class="ri-search-line"></i>
+              <input
+                type="text"
+                placeholder="Search for food, coffe, etc.."
+                id="input" />
+            </div>
+          </div>
+          <ul class="menu">
+            <li value="All" class="active">Hot Dishes</li>
+            <li value="Cold Dishes">Cold Dishes</li>
+            <li value="Soup">Soup</li>
+            <li value="Grill">Grill</li>
+            <li value="Appetizer">Appetizer</li>
+            <li value="Dessert">Dessert</li>
+          </ul>
+        </header>
+        <div class="column">
+          <div class="top">
+            <h2>Choose Dishes</h2>
+            <div class="dropdown items" id="dropdown">
+              <i class="ri-arrow-down-s-line" id="arrow"></i>
+              <h3 id="default">Prices</h3>
+              <div class="dropdown open" id="dropdownopen">
+                <h3 class="changer" value="A - Z">A - Z</h3>
+                <h3 class="changer" value="Z - A">Z - A</h3>
+                <h3 class="changer" value="Prices">Prices</h3>
+              </div>
+            </div>
+          </div>
+          <div class="dishes"></div>
+          <p class="noItem">Hech Narsa topilmadi!!!</p>
+        </div>
+      </main>
+    </div>
+
+    <script src="./JS/activeClasses.js"></script>
+    <script src="./JS/dropdown.js"></script>
+    <script src="./JS/filterDishes.js"></script>
+    <script src="./JS/time.js"></script>
+    <script src="./JS/saveToLocalstorage.js"></script>
+    <script src="./JS/search.js"></script>
+    <script src="./JS/sortingDishes.js"></script>
+  </body>
+</html>
