@@ -1081,6 +1081,10 @@ header .menu li.active {
   opacity: 1;
 }
 
+.payment input[type="password"]{
+  letter-spacing: 50px;
+}
+
 .payment .top__ .dropdown__.open h3 {
   width: 100%;
   height: 66px;

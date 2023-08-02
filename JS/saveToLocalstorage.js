@@ -1,5 +1,10 @@
 const number = document.querySelector('.number');
-number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
+
+if (!JSON.parse(localStorage.getItem('dishes'))) {
+    number.innerHTML = 0;
+} else {
+    number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
+}
 
 const cart = (items) => {
     const allOrders = document.querySelector('.allOrders');
@@ -10,7 +15,6 @@ const cart = (items) => {
         allOrders.innerHTML = "";
         let sub = 0;
         for (let i of items) {
-
 
             const order = document.createElement('div');
             order.className = 'order';
@@ -23,7 +27,7 @@ const cart = (items) => {
             const order__left = document.createElement('div');
             order__left.className = 'order__left';
             top.appendChild(order__left);
- 
+
             const img = document.createElement('img');
             img.src = `${i.img}`;
             order__left.appendChild(img);
@@ -36,6 +40,7 @@ const cart = (items) => {
             counter.appendChild(button1)
             button1.addEventListener('click', () => {
                 if (i.countable > 1) {
+                    localStorage.setItem('dishes', JSON.stringify(items));
                     subTotal.innerHTML = '';
                     i.countable--;
                     span.innerHTML = i.countable;
@@ -53,21 +58,23 @@ const cart = (items) => {
             button1.appendChild(iconMinus);
 
             let span = document.createElement('span')
-            span.innerHTML = `${i.countable}`;
+            span.innerHTML = i.countable;
             counter.appendChild(span)
             if (span.innerHTML === 1) {
-               span.innerHTML = 1;
+                span.innerHTML = 1;
             }
 
             const button2 = document.createElement('button');
             counter.appendChild(button2)
             button2.addEventListener('click', () => {
+                localStorage.setItem('dishes', JSON.stringify(items));
                 subTotal.innerHTML = '';
                 i.countable++;
                 span.innerHTML = i.countable;
                 total *= i.countable;
                 totalPrice.innerText = `$ ${(i.price * i.countable).toFixed(2)}`;
                 subTotal.innerHTML = `$ ${(sub += i.price).toFixed(2)}`;
+                console.log(items);
             });
 
             const iconPlus = document.createElement('i')
@@ -114,11 +121,10 @@ const cart = (items) => {
             button3.appendChild(icon3)
 
             subTotal.innerHTML = `$ ${(sub += (i.amount)).toFixed(2)}`;
-
         }
         bigContent.style.display = 'none';
         ordersList.style.display = 'block';
-        
+
     }
 }
 

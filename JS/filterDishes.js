@@ -83,7 +83,7 @@ let dishes = [
         id: 8,
         productId: 8,
         title: "Punjabi kadhi",
-        category: "Grill",  
+        category: "Grill",
         countable: 1,
         img: 'https://1.bp.blogspot.com/-8aGepsSWmnc/XqH1SmmSoNI/AAAAAAABEQw/0hSe-oftpK8NtV7erhmggGWp2kWOBgucQCLcBGAsYHQ/s640/kadhi%2Bpakoda%2B%25281%2529.JPG',
         price: 2.19,
@@ -174,23 +174,20 @@ const show = (dishes) => {
         div.lastChild.appendChild(button);
         button.classList.add("cardBtn");
         button.innerText = 'Add';
-        allOrders.innerHTML = "";
+        const allOrders = document.querySelector('.allOrders');
         button.addEventListener('click', () => {
-            number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
-            allOrders.innerHTML = "";
+            if (!JSON.parse(localStorage.getItem('dishes'))) {
+                number.innerHTML = 0;
+            } else {
+                number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length + 1;
+            }
             const dish = dishes[i];
             saveToLocalstorage(dish);
-            if(number.innerHTML === 1){
-                return 1;
-            } else if(number.innerHTML === 2){
-                return 1;
-            }
             button.innerHTML = 'Added!';
             setTimeout(() => {
                 button.innerHTML = 'Add';
             }, 1000);
             existingItems(dishes[i].productId, dishes[i].title, dishes[i].img, dishes[i].price, dishes[i].available, dishes[i].countable)
-            allOrders.innerHTML = "";
         });
 
         div.appendChild(textDiv);
