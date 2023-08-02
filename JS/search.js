@@ -15,7 +15,7 @@ searchInput.addEventListener("keyup", (e) => {
             };
         });
         show(resultArr);
-    };;
+    };
 
 
     if (e.keyCode === 13) {

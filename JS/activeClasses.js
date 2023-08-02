@@ -55,6 +55,7 @@ functionsBtn.addEventListener("click", () => {
     orders.classList.remove("active");
     account.classList.remove('active');
     orderHistory.classList.remove('active');
+    payment.classList.remove('active');
 })
 
 //Information Active Class
@@ -68,12 +69,14 @@ informationBtn.addEventListener("click", () => {
     orders.classList.remove("active");
     account.classList.remove('active');
     orderHistory.classList.remove('active');
+    payment.classList.remove('active');
 })
 
 // Home 
 const homeBtn = document.querySelector("#homeBtn");
 
 homeBtn.addEventListener("click", () => {
+    payment.classList.remove('active');
     all.classList.remove("active");
     functions.classList.remove("active");
     information.classList.remove("active");
@@ -86,14 +89,22 @@ homeBtn.addEventListener("click", () => {
 
 const ordersBtn = document.querySelector("#ordersBtn");
 const orders = document.querySelector(".orders");
+const subTotal = document.querySelector('.subtotal');
+const bigContent = document.querySelector('.bigContent');
+const ordersList = document.querySelector('.ordersList');
+const allOrders = document.querySelector('.allOrders');
+allOrders.innerHTML = "";
 
 ordersBtn.addEventListener("click", () => {
+    payment.classList.remove('active');
     orders.classList.add("active");
     all.classList.add("active");
     information.classList.remove("active");
     functions.classList.remove("active");
     account.classList.remove('active');
     orderHistory.classList.remove('active');
+    allOrders.innerHTML = "";
+    cart(JSON.parse(localStorage.getItem('dishes')));
 })
 
 //Account Active Class
@@ -101,6 +112,7 @@ const accountBtn = document.querySelector("#accountBtn");
 const account = document.querySelector(".account");
 
 accountBtn.addEventListener("click", () => {
+    payment.classList.remove('active');
     account.classList.add('active');
     all.classList.add('active');
     information.classList.remove('active');
@@ -115,6 +127,7 @@ const orderHistory = document.querySelector(".orderHistory");
 
 orderHistoryBtns.forEach((orderHistoryBtn) => {
     orderHistoryBtn.addEventListener("click", () => {
+        payment.classList.remove('active');
         orderHistory.classList.add('active');
         all.classList.add('active');
         information.classList.remove('active');
@@ -124,19 +137,43 @@ orderHistoryBtns.forEach((orderHistoryBtn) => {
     })
 })
 
-//Remove all
-const removeModals = document.querySelector('#removeModals');
+//Payment Active Class
 
-removeModals.addEventListener('click', () => {
+const payment = document.querySelector(".payment");
+const paymentBtn = document.querySelector(".paymentBtn");
+
+paymentBtn.addEventListener("click", () => {
+    all.classList.add('active');
+    payment.classList.add('active');
     orders.classList.remove('active');
     orderHistory.classList.remove('active');
-    all.classList.remove('active');
+    functions.classList.remove('active');
 })
+
+//Remove all
+const removeModals = document.querySelectorAll('.removeModals');
+const form = document.getElementById('form');
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+});
+
+removeModals.forEach((removeModals) => {
+    removeModals.addEventListener('click', () => {
+        payment.classList.remove('active');
+        orders.classList.remove('active');
+        orderHistory.classList.remove('active');
+        all.classList.remove('active');
+        functions.classList.remove('active');
+    })
+})
+
 
 //Click esc 
 document.addEventListener('keyup', (e) => {
     e.preventDefault()
     if (e.keyCode === 27) {
+        payment.classList.remove('active');
         orders.classList.remove('active');
         orderHistory.classList.remove('active');
         all.classList.remove('active');
@@ -144,3 +181,15 @@ document.addEventListener('keyup', (e) => {
         functions.classList.remove('active');
     }
 })
+
+//Order Sent 
+let sentOrder = document.querySelector('#sentOrder');
+
+sentOrder.addEventListener('click', () => {
+    alert('Your order has been sent!!');
+    payment.classList.remove('active');
+    orders.classList.remove('active');
+    orderHistory.classList.remove('active');
+    all.classList.remove('active');
+    functions.classList.remove('active');
+});

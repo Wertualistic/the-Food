@@ -308,7 +308,7 @@ html {
   background: #1f1d2b;
   padding: 30px;
   gap: 30px;
-  transition: .2s height ease;
+  transition: 0.2s height ease;
 }
 
 #all .profile .name {
@@ -932,4 +932,220 @@ header .menu li.active {
   font-size: 16px;
   font-weight: 500;
   line-height: 140%;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.payment::-webkit-scrollbar {
+  display: none;
+}
+
+.payment .top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #393c49;
+}
+
+.payment .title {
+  padding-bottom: 0 !important;
+}
+
+.payment .top p {
+  color: #abbbc2;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.payment .content {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  padding: 16px;
+  padding-left: 0;
+}
+
+.payment .content .content__card {
+  width: 101px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid #abbbc2;
+  background: #252836;
+  color: #abbbc2;
+  font-size: 16px;
+}
+
+.payment form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.payment .input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment .input label {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+}
+
+.payment .input input {
+  display: flex;
+  width: 438px;
+  padding: 14px;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--base-dark-line, #393c49);
+  background: var(--base-form-bg, #2d303e);
+  outline: none;
+  color: var(--text-lighter, #e0e6e9);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.payment .inputs {
+  display: flex;
+  gap: 30px;
+}
+
+.payment .inputs input {
+  width: 203px;
+}
+
+.payment .top__ .dropdown__ {
+  width: 203px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid #fff;
+  background: #1f1d2b;
+  cursor: pointer;
+  position: relative;
+}
+
+.payment .top__ .dropdown__.items__ {
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.payment .top__ .dropdown__ h3 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 130%;
+}
+
+.payment .top__ .dropdown__.open {
+  flex-direction: column;
+  position: absolute;
+  width: 180px;
+  height: 0;
+  background: #1f1d2b;
+  z-index: 10;
+  top: 55px;
+  left: 0;
+  align-items: center;
+  justify-content: space-around;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.payment .top__ .dropdown__.open.close {
+  height: 200px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.payment .top__ .dropdown__.open h3 {
+  width: 100%;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s linear;
+  border-radius: 16px 16px 0px 0px;
+}
+
+.payment .top__ .dropdown__.open h3:nth-child(2) {
+  border-radius: 0px;
+}
+
+.payment .top__ .dropdown__.open h3:nth-child(3) {
+  border-radius: 0px 0px 16px 16px;
+}
+
+.payment .top__ .dropdown__.open h3:hover {
+  background: #2d303e;
+}
+
+.payment #arrow1 {
+  font-size: 27px;
+  color: white;
+  transition: 0.1s linear;
+}
+
+.payment #arrow1.transform {
+  transform: rotate(180deg);
+}
+
+.payment .btns {
+  display: flex;
+  gap: 50px;
+  margin-top: 150px;
+  margin-bottom: 70px;
+}
+
+.payment .btns button {
+  display: flex;
+  width: 193.073px;
+  padding: 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--primary-color, #ea7c69);
+  background: transparent;
+  color: #ea7c69;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.payment .btns button:nth-child(2) {
+  color: white;
+  background: #ea7c69;
+  box-shadow: 0px 8px 24px 0px rgba(234, 124, 105, 0.4);
+}
+
+.payment .btns button:hover {
+  color: white;
+  background: #ea7c69;
+  box-shadow: 0px 8px 24px 0px rgba(234, 124, 105, 0.4);
+}
+
+.payment .btns button:nth-child(2):hover {
+  border: 1px solid var(--primary-color, #ea7c69);
+  background: transparent;
+  box-shadow: none;
+  color: #ea7c69;
 }

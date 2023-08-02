@@ -17,7 +17,8 @@
         <li><i class="ri-pie-chart-2-line"></i></li>
         <li><i class="ri-mail-line"></i></li>
         <li><i class="ri-notification-2-line"></i></li>
-        <li id="ordersBtn"><i class="ri-shopping-cart-2-line"></i></li><p class="number">0</p>
+        <li id="ordersBtn"><i class="ri-shopping-cart-2-line"></i></li>
+        <p class="number">0</p>
         <li id="accountBtn"><i class="ri-account-circle-line"></i></li>
       </ul>
       <div id="all">
@@ -58,7 +59,7 @@
             <div class="content">
               <h2 class="title">No Order</h2>
               <p>Go find the products you like</p>
-              <button id="removeModals">To Order</button>
+              <button class="removeModals">To Order</button>
             </div>
           </div>
           <div class="ordersList">
@@ -72,8 +73,14 @@
             </div>
             <div class="allOrders"></div>
             <div class="disASub">
-              <div class="flex"><p class="key">Discount</p><p class="value">$0</p></div>
-              <div class="flex"><p class="key">Sub Total</p><p class="value subtotal">$ 0</p></div>
+              <div class="flex">
+                <p class="key">Discount</p>
+                <p class="value">$0</p>
+              </div>
+              <div class="flex">
+                <p class="key">Sub Total</p>
+                <p class="value subtotal">$ 0</p>
+              </div>
             </div>
             <button class="paymentBtn">Continue to Payment</button>
           </div>
@@ -87,7 +94,10 @@
                 <h3 class="userName">Denis</h3>
               </h2>
             </div>
-            <input type="text" class="editInput" placeholder="Change your name...">
+            <input
+              type="text"
+              class="editInput"
+              placeholder="Change your name..." />
             <button id="edit">Edit profile</button>
           </div>
           <div class="orderHistoryBtn">
@@ -105,6 +115,71 @@
             <li>Orders #34557 <span>Saturday, 23 Jan 2021</span></li>
             <li>Orders #34556 <span>Wednesday, 20 Jan 2021</span></li>
           </ul>
+        </div>
+        <div class="div payment">
+          <div class="top">
+            <h2 class="title">Payment</h2>
+            <p>3 payment method available</p>
+          </div>
+          <form id="form">
+            <h2 class="title">Payment Method</h2>
+            <div class="content">
+              <div class="content__card">
+                <i class="ri-bank-card-line"></i>
+                <p class="text">Credit Card</p>
+              </div>
+              <div class="content__card">
+                <i class="ri-paypal-line"></i>
+                <p class="text">Paypal</p>
+              </div>
+              <div class="content__card">
+                <i class="ri-wallet-3-fill"></i>
+                <p class="text">Cash</p>
+              </div>
+            </div>
+            <div class="input">
+              <label>Cardholder Name</label>
+              <input type="text" placeholder="Levi Ackerman" required />
+            </div>
+            <div class="input">
+              <label>Card Number</label>
+              <input type="name" placeholder="2564 1421 0897 1244" required />
+            </div>
+            <div class="inputs">
+              <div class="input">
+                <label>Expiration Date</label>
+                <input type="text" placeholder="02/2022" required />
+              </div>
+              <div class="input">
+                <label>CVV</label>
+                <input type="password" placeholder="211" required />
+              </div>
+            </div>
+            <div class="inputs">
+              <div class="input">
+                <label>Order Type</label>
+                <div class="top__">
+                  <div class="dropdown__ items__" id="dropdown1">
+                    <i class="ri-arrow-down-s-line" id="arrow1"></i>
+                    <h3 id="default__">Dine In</h3>
+                    <div class="dropdown__ open" id="dropdownopen1">
+                      <h3 class="changer__" value="A - Z">Dine In</h3>
+                      <h3 class="changer__" value="Z - A">To Go</h3>
+                      <h3 class="changer__" value="Prices">Delivery</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="input">
+                <label>Table no.</label>
+                <input type="number" placeholder="140" required/>
+              </div>
+            </div>
+            <div class="btns">
+              <button class="removeModals">Cancel</button>
+              <button id="sentOrder">Confirm Payment</button>
+            </div>
+          </form>
         </div>
       </div>
       <main>

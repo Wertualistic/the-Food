@@ -1,21 +1,14 @@
 const number = document.querySelector('.number');
-const getItems = JSON.parse(localStorage.getItem('dishes'));
 
-number.innerHTML = getItems.length;
-
-document.addEventListener('DOMContentLoaded', () => {
-    const subTotal = document.querySelector('.subtotal');
-    const bigContent = document.querySelector('.bigContent');
-    const ordersList = document.querySelector('.ordersList');
-
-
-    if (getItems.length === 0) {
+const cart = (items) => {
+    const allOrders = document.querySelector('.allOrders');
+    if (JSON.parse(localStorage.getItem('dishes')).length === 0) {
         return bigContent.style.display = 'block',
             ordersList.style.display = 'none';
     } else {
+        allOrders.innerHTML = "";
         let sub = 0;
-        for (let i of getItems) {
-            const allOrders = document.querySelector('.allOrders');
+        for (let i of items) {
 
 
             const order = document.createElement('div');
@@ -29,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const order__left = document.createElement('div');
             order__left.className = 'order__left';
             top.appendChild(order__left);
-
+ 
             const img = document.createElement('img');
             img.src = `${i.img}`;
             order__left.appendChild(img);
@@ -61,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let span = document.createElement('span')
             span.innerHTML = `${i.countable}`;
             counter.appendChild(span)
-            if (span.innerHTML === 0) {
-                removeFromCart(getItems, i);
+            if (span.innerHTML === 1) {
+               span.innerHTML = 1;
             }
 
             const button2 = document.createElement('button');
@@ -71,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 subTotal.innerHTML = '';
                 i.countable++;
                 span.innerHTML = i.countable;
-                total *= i.countable; 
+                total *= i.countable;
                 totalPrice.innerText = `$ ${(i.price * i.countable).toFixed(2)}`;
                 subTotal.innerHTML = `$ ${(sub += i.price).toFixed(2)}`;
             });
@@ -112,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const button3 = document.createElement('button');
             bottom.appendChild(button3);
             button3.addEventListener('click', () => {
-                removeFromCart(getItems, i);
+                removeFromCart(JSON.parse(localStorage.getItem('dishes')), i);
             })
 
             const icon3 = document.createElement('i')
@@ -120,19 +113,20 @@ document.addEventListener('DOMContentLoaded', () => {
             button3.appendChild(icon3)
 
             subTotal.innerHTML = `$ ${(sub += (i.amount)).toFixed(2)}`;
+
         }
         bigContent.style.display = 'none';
         ordersList.style.display = 'block';
-
+        
     }
-
-
-});
+}
 
 const removeFromCart = (state, action) => {
-
     const removed = state.filter((itm) => {
         return action.productId !== itm.productId
     })
+    allOrders.innerHTML = "";
     localStorage.setItem('dishes', JSON.stringify(removed))
+    cart(removed);
+    number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
 }
