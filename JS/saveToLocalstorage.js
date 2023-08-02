@@ -1,4 +1,5 @@
 const number = document.querySelector('.number');
+number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
 
 const cart = (items) => {
     const allOrders = document.querySelector('.allOrders');

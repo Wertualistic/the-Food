@@ -83,7 +83,7 @@ let dishes = [
         id: 8,
         productId: 8,
         title: "Punjabi kadhi",
-        category: "Grill",
+        category: "Grill",  
         countable: 1,
         img: 'https://1.bp.blogspot.com/-8aGepsSWmnc/XqH1SmmSoNI/AAAAAAABEQw/0hSe-oftpK8NtV7erhmggGWp2kWOBgucQCLcBGAsYHQ/s640/kadhi%2Bpakoda%2B%25281%2529.JPG',
         price: 2.19,
@@ -176,10 +176,10 @@ const show = (dishes) => {
         button.innerText = 'Add';
         allOrders.innerHTML = "";
         button.addEventListener('click', () => {
+            number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
             allOrders.innerHTML = "";
             const dish = dishes[i];
             saveToLocalstorage(dish);
-            number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
             if(number.innerHTML === 1){
                 return 1;
             } else if(number.innerHTML === 2){

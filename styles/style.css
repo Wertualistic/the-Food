@@ -1027,6 +1027,11 @@ header .menu li.active {
   gap: 30px;
 }
 
+.payment .inputs.a{
+  padding-bottom: 16px;
+  border-bottom: 1px solid #393C49;
+}
+
 .payment .inputs input {
   width: 203px;
 }
