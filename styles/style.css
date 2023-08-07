@@ -65,8 +65,7 @@ html {
 .sidebar li {
   width: 100px;
   height: 100px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding: 30px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,7 +133,7 @@ html {
   padding: 30px;
   float: right;
   transform: translateX(1000px);
-  transition: width.3s linear;
+  transition: width 0.3s linear;
 }
 
 #all .div.active {
@@ -520,7 +519,7 @@ html {
 #all .ordersList .order .bottom input {
   display: flex;
   width: 360px;
-  padding: 14px 213px 14px 14px;
+  padding: 14px;
   align-items: flex-start;
   gap: 8px;
   border-radius: 8px;
@@ -694,7 +693,7 @@ header .menu li.active {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
 .column .top h2 {
@@ -764,6 +763,10 @@ header .menu li.active {
 }
 
 .column .top .dropdown.open h3:nth-child(3) {
+  border-radius: 0px;
+}
+
+.column .top .dropdown.open h3:last-child {
   border-radius: 0px 0px 16px 16px;
 }
 
@@ -1027,9 +1030,9 @@ header .menu li.active {
   gap: 30px;
 }
 
-.payment .inputs.a{
+.payment .inputs.a {
   padding-bottom: 16px;
-  border-bottom: 1px solid #393C49;
+  border-bottom: 1px solid #393c49;
 }
 
 .payment .inputs input {
@@ -1081,7 +1084,7 @@ header .menu li.active {
   opacity: 1;
 }
 
-.payment input[type="password"]{
+.payment input[type="password"] {
   letter-spacing: 50px;
 }
 
@@ -1157,4 +1160,204 @@ header .menu li.active {
   background: transparent;
   box-shadow: none;
   color: #ea7c69;
+}
+
+.alert {
+  width: 1000px;
+  height: 50px;
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 300px;
+  border-radius: 10px;
+  background: #1f1d2b;
+  color: white;
+  font-size: 24px;
+}
+
+.alert.active {
+  visibility: visible;
+  opacity: 1;
+  top: 50px;
+}
+
+@media only screen and (max-width: 430px) {
+  .alert{
+    left: 0;
+    width: 370px;
+    font-size: 16px;
+    padding: 10px;
+    ml10
+  }
+  main {
+    margin: 0;
+    padding: 10px;
+  }
+
+  header .top {
+    flex-direction: column;
+    align-items: start;
+    gap: 30px;
+  }
+
+  header .top .name h1 {
+    font-size: 28px;
+  }
+
+  .column .top h2 {
+    font-size: 18px;
+  }
+
+  .column .top .dropdown.items {
+    width: 130px;
+  }
+
+  .column .top #dropdownopen {
+    width: 130px;
+  }
+
+  header .menu {
+    gap: 70px;
+    width: 370px;
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+
+  header .menu li:first-child {
+    margin-left: 350px;
+  }
+
+  header .menu li {
+    white-space: nowrap;
+    display: flex;
+    font-size: 16px;
+  }
+
+  .BIG {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .sidebar {
+    width: 430px;
+    height: 100px;
+    flex-direction: row;
+    padding: 0;
+    position: unset;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sidebar #functionsBtn {
+    margin: 0;
+  }
+
+  .sidebar #ordersBtn {
+    margin: 0;
+    padding: 0;
+    order: 4;
+  }
+
+  .sidebar #homeBtn {
+    order: 3;
+  }
+
+  .sidebar li:nth-child(4) {
+    order: 2;
+  }
+
+  .sidebar #accountBtn {
+    margin: 0;
+    order: 5;
+  }
+
+  .sidebar li:nth-child(3),
+  .sidebar li:nth-child(5),
+  .sidebar li:nth-child(6) {
+    display: none;
+  }
+
+  .column .dishes {
+    justify-content: center;
+    margin-bottom: 70px;
+  }
+
+  #all .div.active {
+    width: 410px;
+  }
+
+  #all .ordersList .paymentBtn {
+    width: 370px;
+    margin-bottom: 200px;
+  }
+
+  #all .ordersList .order .bottom input {
+    width: 260px;
+  }
+
+  #all .account .orderHistoryBtn,
+  #all .account .profile {
+    width: 370px;
+  }
+
+  .payment .input input {
+    width: 370px;
+  }
+
+  .payment .inputs input {
+    width: 170px;
+  }
+
+  .payment .top__ .dropdown__.items__ {
+    width: 170px;
+  }
+
+  #all .div.orderHistory ul {
+    margin-bottom: 200px;
+  }
+
+  #all .div.information ul {
+    height: 440px;
+    margin-bottom: 200px;
+  }
+
+  #all .div.information ul li {
+    width: 370px;
+    height: 70px;
+  }
+
+  .number {
+    z-index: 10000;
+    bottom: 20px;
+    left: 225px;
+  }
+
+  #all .orders .content button {
+    width: 430px;
+    margin: 200px 0;
+  }
+
+  .payment .btns {
+    margin-bottom: 150px;
+  }
+
+  #all {
+    left: 0;
+    top: 0;
+  }
+
+  #all .div {
+    right: 0;
+  }
 }

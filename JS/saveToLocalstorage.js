@@ -1,14 +1,20 @@
 const number = document.querySelector('.number');
-
 if (!JSON.parse(localStorage.getItem('dishes'))) {
     number.innerHTML = 0;
 } else {
     number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
 }
-
 const cart = (items) => {
+    if (items === null) {
+        return bigContent.style.display = 'block',
+            ordersList.style.display = 'none';
+    } else {
+        bigContent.style.display = 'none';
+        ordersList.style.display = 'block';
+    }
+
     const allOrders = document.querySelector('.allOrders');
-    if (JSON.parse(localStorage.getItem('dishes')).length === 0) {
+    if (items.length === 0) {
         return bigContent.style.display = 'block',
             ordersList.style.display = 'none';
     } else {
@@ -57,7 +63,8 @@ const cart = (items) => {
             iconMinus.className = "ri-subtract-fill";
             button1.appendChild(iconMinus);
 
-            let span = document.createElement('span')
+            let span = document.createElement('span');
+            span.className = 'num';
             span.innerHTML = i.countable;
             counter.appendChild(span)
             if (span.innerHTML === 1) {
@@ -67,14 +74,18 @@ const cart = (items) => {
             const button2 = document.createElement('button');
             counter.appendChild(button2)
             button2.addEventListener('click', () => {
-                localStorage.setItem('dishes', JSON.stringify(items));
-                subTotal.innerHTML = '';
-                i.countable++;
-                span.innerHTML = i.countable;
-                total *= i.countable;
-                totalPrice.innerText = `$ ${(i.price * i.countable).toFixed(2)}`;
-                subTotal.innerHTML = `$ ${(sub += i.price).toFixed(2)}`;
-                console.log(items);
+                if (i.countable >= i.available) {
+                    alert(`You can't add more than ${i.available} dishes`);
+                    span.innerHTML = i.available;
+                } else {
+                    localStorage.setItem('dishes', JSON.stringify(items));
+                    subTotal.innerHTML = '';
+                    i.countable++;
+                    span.innerHTML = i.countable;
+                    total *= i.countable;
+                    totalPrice.innerText = `$ ${(i.price * i.countable).toFixed(2)}`;
+                    subTotal.innerHTML = `$ ${(sub += i.price).toFixed(2)}`;
+                }
             });
 
             const iconPlus = document.createElement('i')
@@ -99,7 +110,7 @@ const cart = (items) => {
             const totalPrice = document.createElement('h3');
             totalPrice.className = 'totalPrice';
             order__right.appendChild(totalPrice);
-            totalPrice.innerText = `$ ${(i.amount).toFixed(2)}`;
+            totalPrice.innerText = `$ ${(i.amount)}`;
 
             const bottom = document.createElement('div');
             bottom.className = 'bottom';
@@ -113,14 +124,14 @@ const cart = (items) => {
             const button3 = document.createElement('button');
             bottom.appendChild(button3);
             button3.addEventListener('click', () => {
-                removeFromCart(JSON.parse(localStorage.getItem('dishes')), i);
+                removeFromCart(i.productId);
             })
 
             const icon3 = document.createElement('i')
             icon3.className = "ri-delete-bin-line deleteBtn"
             button3.appendChild(icon3)
 
-            subTotal.innerHTML = `$ ${(sub += (i.amount)).toFixed(2)}`;
+            subTotal.innerHTML = `$ ${(sub += (+i.amount)).toFixed(2)}`;
         }
         bigContent.style.display = 'none';
         ordersList.style.display = 'block';
@@ -128,12 +139,14 @@ const cart = (items) => {
     }
 }
 
-const removeFromCart = (state, action) => {
-    const removed = state.filter((itm) => {
-        return action.productId !== itm.productId
-    })
-    allOrders.innerHTML = "";
-    localStorage.setItem('dishes', JSON.stringify(removed))
-    cart(removed);
-    number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
+const removeFromCart = (productId) => {
+    let cartItems = JSON.parse(localStorage.getItem('dishes')) || [];
+    const removedItemIndex = cartItems.findIndex(item => item.productId === productId);
+
+    if (removedItemIndex !== -1) {
+        cartItems.splice(removedItemIndex, 1);
+        localStorage.setItem('dishes', JSON.stringify(cartItems));
+        number.innerHTML = cartItems.length;
+        cart(cartItems);
+    }
 }

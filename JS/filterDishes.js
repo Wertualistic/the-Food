@@ -4,7 +4,7 @@ let dishes = [
     {
         id: 1,
         productId: 1,
-        title: "Spicy seasoned seafood noodles",
+        title: "Spicy seasoned seafood  ",
         category: "Hot Dishes",
         countable: 1,
         img: 'images/first.png',
@@ -135,10 +135,25 @@ let dishes = [
         amount: 2.29
     },
 ];
-
+let alertt = document.querySelector('.alert');
 const saveToLocalstorage = (dish) => {
-    localStorage.setItem('dishes', JSON.stringify([...JSON.parse(localStorage.getItem('dishes') || "[]"), dish]));
+    let cartItems = JSON.parse(localStorage.getItem('dishes')) || [];
+
+    const existingItemIndex = cartItems.findIndex(item => item.productId === dish.productId);
+    if (existingItemIndex !== -1) {
+        if (cartItems[existingItemIndex].countable === cartItems[existingItemIndex].available) {
+            alert(`Product is ${cartItems[existingItemIndex].available} limit`)
+        } else {
+            cartItems[existingItemIndex].countable++;
+            cartItems[existingItemIndex].amount = (parseFloat(cartItems[existingItemIndex].amount) + parseFloat(dish.price)).toFixed(2);
+        }
+    } else {
+        cartItems.push({ ...dish });
+    }
+    localStorage.setItem('dishes', JSON.stringify(cartItems));
+    number.innerHTML = cartItems.length;
 }
+
 
 const dishesContainer = document.querySelector(".dishes");
 const show = (dishes) => {
@@ -171,23 +186,26 @@ const show = (dishes) => {
         textDiv.appendChild(isHave);
 
         let button = document.createElement("button");
+        let alert = document.querySelector('.alert');
+
+        alert.classList.remove('active');
         div.lastChild.appendChild(button);
         button.classList.add("cardBtn");
         button.innerText = 'Add';
         const allOrders = document.querySelector('.allOrders');
         button.addEventListener('click', () => {
-            if (!JSON.parse(localStorage.getItem('dishes'))) {
-                number.innerHTML = 0;
-            } else {
-                number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length + 1;
-            }
             const dish = dishes[i];
-            saveToLocalstorage(dish);
+            allOrders.innerHTML = '';
+            if (!JSON.parse(localStorage.getItem('dishes'))) number.innerHTML = 0; else number.innerHTML = JSON.parse(localStorage.getItem('dishes')).length;
             button.innerHTML = 'Added!';
+            alertt.classList.add('active');
             setTimeout(() => {
                 button.innerHTML = 'Add';
+                alertt.classList.remove('active');
             }, 1000);
-            existingItems(dishes[i].productId, dishes[i].title, dishes[i].img, dishes[i].price, dishes[i].available, dishes[i].countable)
+            saveToLocalstorage(dish);
+            
+            alertt.innerHTML = `Product "${dishes[i].title}" added to the Cart successfully`;
         });
 
         div.appendChild(textDiv);
@@ -195,30 +213,5 @@ const show = (dishes) => {
         dishesContainer.appendChild(div);
     }
 };
-
-const getItem = JSON.parse(localStorage.getItem('dishes'));
-const existingItems = (productId, title, img, price, available, countable) => {
-    const existingItem = getItem.findIndex(item => item.productId === productId);
-    if (existingItem !== -1) {
-        if (getItem[existingItem].countable !== getItem[existingItem].available) {
-            getItem[existingItem].countable++;
-            let amount1 = parseFloat(getItem[existingItem].amount);
-            let price1 = parseFloat(getItem[existingItem].price);
-            amount1 += price1;
-            getItem[existingItem].amount = amount1;
-        }
-    } else {
-        getItem.push({
-            title: title,
-            img: img,
-            price: price,
-            amount: price,
-            productId: productId,
-            available: available,
-            countable: countable
-        })
-    }
-    localStorage.setItem('dishes', JSON.stringify(getItem));
-}
 
 show(dishes);

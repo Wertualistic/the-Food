@@ -20,8 +20,9 @@ function sorting(resultArr) {
             return titleA.localeCompare(titleB);
         });
         show(resultArr);
-
         changerDefault.textContent = 'A - Z';
+
+        
 
     });
 
@@ -44,6 +45,17 @@ function sorting(resultArr) {
             const priceA = parseFloat(a.price);
             const priceB = parseFloat(b.price);
             return priceA - priceB;
+        });
+        show(resultArr);
+
+        changerDefault.textContent = 'Prices';
+    });
+
+    changer[3].addEventListener("click", () => {
+        dishes.sort((a, b) => {
+            const priceA = parseFloat(a.price);
+            const priceB = parseFloat(b.price);
+            return priceB - priceA;
         });
         show(resultArr);
 

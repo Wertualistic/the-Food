@@ -12,7 +12,6 @@ menuItems.forEach(menuItem => {
         menuItem.classList.add("active");
 
         show(filteredDishes);
-        sorting(filteredDishes);
 
         if (menuItemValue === 'All') {
             return (
@@ -21,8 +20,7 @@ menuItems.forEach(menuItem => {
             );
         } else {
             return (
-                sorting(filteredDishes),
-                show(filteredDishes)
+                sorting(filteredDishes)
             );
         }
     })
@@ -168,6 +166,15 @@ removeModals.forEach((removeModals) => {
     })
 })
 
+const remove = document.querySelector('.remove');
+
+remove.addEventListener('click', () => {
+    ordersList.classList.add('active');
+    orders.classList.add('active');
+    all.classList.add('active');
+    functions.classList.remove('active');
+    payment.classList.remove('active');
+})
 
 //Click esc 
 document.addEventListener('keyup', (e) => {
@@ -187,6 +194,8 @@ let sentOrder = document.querySelector('#sentOrder');
 
 sentOrder.addEventListener('click', () => {
     alert('Your order has been sent!!');
+    localStorage.removeItem('dishes');
+    number.innerHTML = 0;
     payment.classList.remove('active');
     orders.classList.remove('active');
     orderHistory.classList.remove('active');

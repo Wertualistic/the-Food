@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
@@ -10,20 +11,27 @@
   </head>
   <body>
     <div class="container">
-      <ul class="sidebar">
-        <li id="functionsBtn"><i class="ri-menu-line"></i></li>
-        <li id="homeBtn"><i class="ri-home-2-line active"></i></li>
-        <li><i class="ri-percent-line"></i></li>
-        <li><i class="ri-pie-chart-2-line"></i></li>
-        <li><i class="ri-mail-line"></i></li>
-        <li><i class="ri-notification-2-line"></i></li>
-        <li id="ordersBtn"><i class="ri-shopping-cart-2-line"></i></li>
-        <p class="number">0</p>
-        <li id="accountBtn"><i class="ri-account-circle-line"></i></li>
-      </ul>
+      <div class="BIG">
+        <ul class="sidebar">
+          <li id="functionsBtn"><i class="ri-menu-line"></i></li>
+          <li id="homeBtn"><i class="ri-home-2-line active"></i></li>
+          <li><i class="ri-percent-line"></i></li>
+          <li><i class="ri-pie-chart-2-line"></i></li>
+          <li><i class="ri-mail-line"></i></li>
+          <li><i class="ri-notification-2-line"></i></li>
+          <li id="ordersBtn"><i class="ri-shopping-cart-2-line"></i></li>
+          <p class="number">0</p>
+          <li id="accountBtn"><i class="ri-account-circle-line"></i></li>
+        </ul>
+      </div>
       <div id="all">
         <div class="div functions">
-          <h2 class="title">Functions</h2>
+          <h2 class="title">
+            <i
+              class="ri-arrow-left-line removeModals"
+              style="cursor: pointer"></i>
+            Functions
+          </h2>
           <ul class="ul first">
             <li class="informationBtn">
               <i class="ri-information-line"></i> Information
@@ -35,7 +43,12 @@
           </ul>
         </div>
         <div class="div information">
-          <h2 class="title">Information</h2>
+          <h2 class="title">
+            <i
+              class="ri-arrow-left-line removeModals"
+              style="cursor: pointer"></i>
+            Information
+          </h2>
           <ul class="ul second">
             <li><i class="ri-phone-line"></i> +998 71 000 00 71</li>
             <li>
@@ -52,7 +65,12 @@
         </div>
         <div class="div orders">
           <div class="bigContent">
-            <h2 class="title">Orders</h2>
+            <h2 class="title">
+              <i
+                class="ri-arrow-left-line removeModals"
+                style="cursor: pointer"></i>
+              Orders
+            </h2>
             <div class="img">
               <img src="./images/breakfast.png" alt="" />
             </div>
@@ -64,7 +82,10 @@
           </div>
           <div class="ordersList">
             <h2 class="title">
-              <i class="ri-arrow-left-line"></i> Orders #34562
+              <i
+                class="ri-arrow-left-line removeModals"
+                style="cursor: pointer"></i>
+              Orders #34562
             </h2>
             <div class="btns">
               <button>Dine In</button>
@@ -86,7 +107,12 @@
           </div>
         </div>
         <div class="div account">
-          <h2 class="title">Profil</h2>
+          <h2 class="title">
+            <i
+              class="ri-arrow-left-line removeModals"
+              style="cursor: pointer"></i>
+            Profil
+          </h2>
           <div class="profile">
             <div class="name">
               <h2>
@@ -105,7 +131,12 @@
           </div>
         </div>
         <div class="div orderHistory">
-          <h2 class="title">Order history</h2>
+          <h2 class="title">
+            <i
+              class="ri-arrow-left-line removeModals"
+              style="cursor: pointer"></i>
+            Order history
+          </h2>
           <ul class="ul">
             <li>Orders #34562 <span>Tuesday, 2 Feb 2021</span></li>
             <li>Orders #34561 <span>Monday, 1 Feb 2021</span></li>
@@ -172,11 +203,11 @@
               </div>
               <div class="input">
                 <label>Table no.</label>
-                <input type="number" placeholder="140" required/>
+                <input type="number" placeholder="140" required />
               </div>
             </div>
             <div class="btns">
-              <button class="removeModals">Cancel</button>
+              <button class="remove">Cancel</button>
               <button id="sentOrder">Confirm Payment</button>
             </div>
           </form>
@@ -215,7 +246,8 @@
               <div class="dropdown open" id="dropdownopen">
                 <h3 class="changer" value="A - Z">A - Z</h3>
                 <h3 class="changer" value="Z - A">Z - A</h3>
-                <h3 class="changer" value="Prices">Prices</h3>
+                <h3 class="changer" value="Prices Up">Prices Up</h3>
+                <h3 class="changer" value="Prices Down">Prices Down</h3>
               </div>
             </div>
           </div>
@@ -223,6 +255,9 @@
           <p class="noItem">Hech Narsa topilmadi!!!</p>
         </div>
       </main>
+    </div>
+
+    <div class="alert">
     </div>
 
     <script src="./JS/activeClasses.js"></script>
