@@ -13,15 +13,31 @@
     <div class="container">
       <div class="BIG">
         <ul class="sidebar">
-          <li id="functionsBtn"><i class="ri-menu-line"></i></li>
-          <li id="homeBtn"><i class="ri-home-2-line active"></i></li>
-          <li><i class="ri-percent-line"></i></li>
-          <li><i class="ri-pie-chart-2-line"></i></li>
-          <li><i class="ri-mail-line"></i></li>
-          <li><i class="ri-notification-2-line"></i></li>
-          <li id="ordersBtn"><i class="ri-shopping-cart-2-line"></i></li>
-          <p class="number">0</p>
-          <li id="accountBtn"><i class="ri-account-circle-line"></i></li>
+          <li id="functionsBtn">
+            <a href="/#"><i class="ri-menu-line"></i></a>
+          </li>
+          <li id="homeBtn">
+            <a href="/#"><i class="ri-home-2-line"></i></a>
+          </li>
+          <li>
+            <a href="/#"><i class="ri-percent-line"></i></a>
+          </li>
+          <li>
+            <a href="/#"><i class="ri-pie-chart-2-line"></i></a>
+          </li>
+          <li>
+            <a href="/#"><i class="ri-mail-line"></i></a>
+          </li>
+          <li>
+            <a href="/#"><i class="ri-notification-2-line"></i></a>
+          </li>
+          <li id="ordersBtn">
+            <a href="/#"><i class="ri-shopping-cart-2-line"></i></a>
+            <p class="number">0</p>
+          </li>
+          <li id="accountBtn">
+            <a href="/#"><i class="ri-account-circle-line"></i></a>
+          </li>
         </ul>
       </div>
       <div id="all">
@@ -44,9 +60,7 @@
         </div>
         <div class="div information">
           <h2 class="title">
-            <i
-              class="ri-arrow-left-line removeModals"
-              style="cursor: pointer"></i>
+            <i class="ri-arrow-left-line arrowInfo" style="cursor: pointer"></i>
             Information
           </h2>
           <ul class="ul second">
@@ -87,10 +101,17 @@
                 style="cursor: pointer"></i>
               Orders #34562
             </h2>
-            <div class="btns">
+            <div class="btns1">
               <button>Dine In</button>
               <button>To Go</button>
               <button>Delivery</button>
+            </div>
+            <div class="qty">
+              <p>Item</p>
+              <div class="qty1">
+                <p>Qty</p>
+                <p>Price</p>
+              </div>
             </div>
             <div class="allOrders"></div>
             <div class="disASub">
@@ -126,14 +147,17 @@
               placeholder="Change your name..." />
             <button id="edit">Edit profile</button>
           </div>
-          <div class="orderHistoryBtn">
+          <div class="orderHistoryBtnAcc">
             <i class="ri-time-line"></i> Order history
           </div>
         </div>
         <div class="div orderHistory">
           <h2 class="title">
             <i
-              class="ri-arrow-left-line removeModals"
+              class="ri-arrow-left-line arrowOrder"
+              style="cursor: pointer"></i>
+            <i
+              class="ri-arrow-left-line arrowAcc"
               style="cursor: pointer"></i>
             Order history
           </h2>
@@ -155,15 +179,18 @@
           <form id="form">
             <h2 class="title">Payment Method</h2>
             <div class="content">
-              <div class="content__card">
+              <div class="content__card active">
+                <i class="ri-checkbox-circle-line check"></i>
                 <i class="ri-bank-card-line"></i>
                 <p class="text">Credit Card</p>
               </div>
               <div class="content__card">
+                <i class="ri-checkbox-circle-line check"></i>
                 <i class="ri-paypal-line"></i>
                 <p class="text">Paypal</p>
               </div>
               <div class="content__card">
+                <i class="ri-checkbox-circle-line check"></i>
                 <i class="ri-wallet-3-fill"></i>
                 <p class="text">Cash</p>
               </div>
@@ -174,7 +201,11 @@
             </div>
             <div class="input">
               <label>Card Number</label>
-              <input type="name" placeholder="2564 1421 0897 1244" required />
+              <input
+                type="name"
+                maxlength="16"
+                placeholder="2564 1421 0897 1244"
+                required />
             </div>
             <div class="inputs a">
               <div class="input">
@@ -183,7 +214,11 @@
               </div>
               <div class="input">
                 <label>CVV</label>
-                <input type="password" placeholder="211" required />
+                <input
+                  type="password"
+                  maxlength="3"
+                  placeholder="211"
+                  required />
               </div>
             </div>
             <div class="inputs">
@@ -246,18 +281,18 @@
               <div class="dropdown open" id="dropdownopen">
                 <h3 class="changer" value="A - Z">A - Z</h3>
                 <h3 class="changer" value="Z - A">Z - A</h3>
-                <h3 class="changer" value="Prices Up">Prices Up</h3>
-                <h3 class="changer" value="Prices Down">Prices Down</h3>
+                <h3 class="changer" value="Prices Up">Prices</h3>
               </div>
             </div>
           </div>
           <div class="dishes"></div>
-          <p class="noItem">Hech Narsa topilmadi!!!</p>
+          <p class="noItem">No Results Found!!</p>
         </div>
       </main>
     </div>
 
-    <div class="alert">
+    <div class="alertB">
+      <div class="alert"></div>
     </div>
 
     <script src="./JS/activeClasses.js"></script>
@@ -266,6 +301,5 @@
     <script src="./JS/time.js"></script>
     <script src="./JS/saveToLocalstorage.js"></script>
     <script src="./JS/search.js"></script>
-    <script src="./JS/sortingDishes.js"></script>
   </body>
 </html>

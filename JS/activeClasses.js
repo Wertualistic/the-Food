@@ -1,27 +1,111 @@
 //Category Active Class
+let changer = document.querySelectorAll(".changer");
+let changerDefault = document.querySelector("#default");
 const menuItems = document.querySelectorAll(".menu li");
+const noItem = document.querySelector('.noItem');
 
 menuItems.forEach(menuItem => {
     const menuItemValue = menuItem.getAttribute('value');
-
+    changer[0].addEventListener('click', () => {
+        dishes.sort(function (a, b) {
+            const titleA = a.title.toLowerCase();
+            const titleB = b.title.toLowerCase();
+            return titleA.localeCompare(titleB);
+        });
+        show(dishes);
+        changerDefault.textContent = 'A - Z';
+    })
+    changer[1].addEventListener('click', () => {
+        dishes.sort(function (a, b) {
+            const titleA = a.title.toLowerCase();
+            const titleB = b.title.toLowerCase();
+            return titleB.localeCompare(titleA);
+        });
+        show(dishes);
+        changerDefault.textContent = 'Z - A';
+    })
+    changer[2].addEventListener("click", () => {
+        dishes.sort((a, b) => {
+            const priceA = parseFloat(a.price);
+            const priceB = parseFloat(b.price);
+            return priceA - priceB;
+        });
+        show(dishes);
+        changerDefault.textContent = 'Prices';
+    });
     menuItem.addEventListener('click', () => {
-        const filteredDishes = dishes.filter((itm) => {
-            return itm.category === menuItemValue;
+
+        const categories = dishes.filter((itm) => {
+            return itm.category.includes(menuItemValue);
         })
+        if (categories.length === 0) {
+            noItem.style.display = 'block';
+            show(categories)
+        } else {
+            noItem.style.display = 'none';
+            show(categories)
+        }
         menuItems.forEach(menuItem => menuItem.classList.remove("active"));
         menuItem.classList.add("active");
 
-        show(filteredDishes);
-
+        show(categories);
         if (menuItemValue === 'All') {
-            return (
-                sorting(dishes),
-                show(dishes)
-            );
+            changer[0].addEventListener('click', () => {
+                dishes.sort(function (a, b) {
+                    const titleA = a.title.toLowerCase();
+                    const titleB = b.title.toLowerCase();
+                    return titleA.localeCompare(titleB);
+                });
+                show(dishes);
+                changerDefault.textContent = 'A - Z';
+            })
+            changer[1].addEventListener('click', () => {
+                dishes.sort(function (a, b) {
+                    const titleA = a.title.toLowerCase();
+                    const titleB = b.title.toLowerCase();
+                    return titleB.localeCompare(titleA);
+                });
+                show(dishes);
+                changerDefault.textContent = 'Z - A';
+            })
+            changer[2].addEventListener("click", () => {
+                dishes.sort((a, b) => {
+                    const priceA = parseFloat(a.price);
+                    const priceB = parseFloat(b.price);
+                    return priceA - priceB;
+                });
+                show(dishes);
+                changerDefault.textContent = 'Prices';
+            });
+            show(dishes)
         } else {
-            return (
-                sorting(filteredDishes)
-            );
+            changer[0].addEventListener('click', () => {
+                categories.sort(function (a, b) {
+                    const titleA = a.title.toLowerCase();
+                    const titleB = b.title.toLowerCase();
+                    return titleA.localeCompare(titleB);
+                });
+                show(categories);
+                changerDefault.textContent = 'A - Z';
+            })
+            changer[1].addEventListener('click', () => {
+                categories.sort(function (a, b) {
+                    const titleA = a.title.toLowerCase();
+                    const titleB = b.title.toLowerCase();
+                    return titleB.localeCompare(titleA);
+                });
+                show(categories);
+                changerDefault.textContent = 'Z - A';
+            })
+            changer[2].addEventListener("click", () => {
+                categories.sort((a, b) => {
+                    const priceA = parseFloat(a.price);
+                    const priceB = parseFloat(b.price);
+                    return priceA - priceB;
+                });
+                show(categories);
+                changerDefault.textContent = 'Prices';
+            });
         }
     })
 
@@ -29,7 +113,8 @@ menuItems.forEach(menuItem => {
 
 //Sidebar Active Class
 
-const sidebarItems = document.querySelectorAll('.sidebar li i');
+const sidebarItems = document.querySelectorAll('.sidebar li');
+sidebarItems[1].classList.add('active')
 
 sidebarItems.forEach((item) => {
     item.addEventListener('click', () => {
@@ -37,6 +122,31 @@ sidebarItems.forEach((item) => {
         sidebarItems.forEach(item => item.classList.remove("active"))
         item.classList.add("active");
 
+    })
+})
+
+//Btns button active
+
+const allBtns = document.querySelectorAll('.btns1 button');
+let changer1 = document.querySelectorAll(".changer__");
+let changerDefault1 = document.querySelector("#default__");
+
+allBtns.forEach((btn) => {
+    const btnValue = btn.innerHTML;
+    btn.addEventListener('click', () => {
+        changerDefault1.innerHTML = btnValue;
+        allBtns.forEach((btn) => btn.classList.remove('active'));
+        btn.classList.add('active');
+    })
+})
+
+//.content .content__card
+const contentCard = document.querySelectorAll('.content .content__card');
+
+contentCard.forEach(card => {
+    card.addEventListener('click', () => {
+        contentCard.forEach(card => card.classList.remove('active'));
+        card.classList.add('active');
     })
 })
 
@@ -62,7 +172,7 @@ const informationBtn = document.querySelector('.informationBtn');
 const information = document.querySelector('.information');
 
 informationBtn.addEventListener("click", () => {
-    information.classList.toggle("active");
+    information.classList.add("active");
     functions.classList.remove("active");
     orders.classList.remove("active");
     account.classList.remove('active');
@@ -110,9 +220,9 @@ const accountBtn = document.querySelector("#accountBtn");
 const account = document.querySelector(".account");
 
 accountBtn.addEventListener("click", () => {
-    payment.classList.remove('active');
     account.classList.add('active');
     all.classList.add('active');
+    payment.classList.remove('active');
     information.classList.remove('active');
     functions.classList.remove('active');
     orders.classList.remove('active');
@@ -120,21 +230,34 @@ accountBtn.addEventListener("click", () => {
 })
 
 //Order history Active Class
-const orderHistoryBtns = document.querySelectorAll(".orderHistoryBtn");
+const orderHistoryBtn = document.querySelector(".orderHistoryBtn");
+const orderHistoryBtnAcc = document.querySelector(".orderHistoryBtnAcc");
 const orderHistory = document.querySelector(".orderHistory");
 
-orderHistoryBtns.forEach((orderHistoryBtn) => {
-    orderHistoryBtn.addEventListener("click", () => {
-        payment.classList.remove('active');
-        orderHistory.classList.add('active');
-        all.classList.add('active');
-        information.classList.remove('active');
-        functions.classList.remove('active')
-        account.classList.remove("active");
-        orders.classList.remove('active');
-    })
+
+orderHistoryBtn.addEventListener("click", () => {
+    arrowAcc.style.display = 'none';
+    arrowOrder.style.display = 'block';
+    payment.classList.remove('active');
+    orderHistory.classList.add('active');
+    all.classList.add('active');
+    information.classList.remove('active');
+    functions.classList.remove('active')
+    account.classList.remove("active");
+    orders.classList.remove('active');
 })
 
+orderHistoryBtnAcc.addEventListener('click', () => {
+    arrowAcc.style.display = 'block';
+    arrowOrder.style.display = 'none';
+    payment.classList.remove('active');
+    orderHistory.classList.add('active');
+    all.classList.add('active');
+    information.classList.remove('active');
+    functions.classList.remove('active')
+    account.classList.remove("active");
+    orders.classList.remove('active');
+})
 //Payment Active Class
 
 const payment = document.querySelector(".payment");
@@ -151,6 +274,24 @@ paymentBtn.addEventListener("click", () => {
 //Remove all
 const removeModals = document.querySelectorAll('.removeModals');
 const form = document.getElementById('form');
+const arrowInfo = document.querySelector('.arrowInfo');
+const arrowOrder = document.querySelector('.arrowOrder');
+const arrowAcc = document.querySelector('.arrowAcc');
+
+arrowInfo.addEventListener('click', () => {
+    functions.classList.add('active');
+    information.classList.remove('active');
+})
+
+arrowOrder.addEventListener('click', () => {
+    functions.classList.add('active');
+    orderHistory.classList.remove('active');
+})
+
+arrowAcc.addEventListener('click', () => {
+    account.classList.add('active');
+    orderHistory.classList.remove('active');
+})
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -163,6 +304,15 @@ removeModals.forEach((removeModals) => {
         orderHistory.classList.remove('active');
         all.classList.remove('active');
         functions.classList.remove('active');
+        account.classList.remove('active')
+        sidebarItems[1].classList.add('active')
+        sidebarItems[6].classList.remove('active')
+        sidebarItems[5].classList.remove('active')
+        sidebarItems[4].classList.remove('active')
+        sidebarItems[3].classList.remove('active')
+        sidebarItems[2].classList.remove('active')
+        sidebarItems[0].classList.remove('active')
+        sidebarItems[7].classList.remove('active')
     })
 })
 
@@ -201,4 +351,6 @@ sentOrder.addEventListener('click', () => {
     orderHistory.classList.remove('active');
     all.classList.remove('active');
     functions.classList.remove('active');
+    sidebarItems[1].classList.add('active')
+    sidebarItems[6].classList.remove('active')
 });

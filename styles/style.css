@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400;600&display=swap");
-
 /* Default styles */
-
 * {
   padding: 0;
   margin: 0;
@@ -30,24 +28,24 @@ html {
 }
 
 /* Container */
-
 .container {
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
   background: #252836;
   border-radius: 16px;
 }
 
 /* Sidebar */
-
 .sidebar {
   width: 100px;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   align-items: start;
-  justify-content: space-around;
+  justify-content: start;
   border-radius: 16px 0px 0px 16px;
   background: #1f1d2b;
   position: fixed;
@@ -63,8 +61,9 @@ html {
 }
 
 .sidebar li {
+  position: relative;
   width: 100px;
-  height: 100px;
+  height: 110px;
   padding: 30px 0;
   display: flex;
   align-items: center;
@@ -72,10 +71,8 @@ html {
   list-style: none;
   cursor: pointer;
   transition: 0.2s linear;
-}
-
-.sidebar li:nth-child(1) {
-  margin-top: 100px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 .sidebar li i {
@@ -89,22 +86,53 @@ html {
   transition: 0.2s linear;
 }
 
-.sidebar li i.active {
+.sidebar li.active i {
   color: white;
   border-radius: 8px;
   background: #ea7c69;
   box-shadow: 0px 8px 24px 0px rgba(234, 124, 105, 0.32);
 }
 
-.sidebar li i:hover {
+.sidebar li.active {
+  background: #252836;
+}
+
+.sidebar li.active::before,
+li:hover::before {
+  content: "";
+  background: url(../images/Rectangle1.png);
+  width: 12px;
+  height: 15px;
+  position: absolute;
+  top: -15px;
+  right: 0px;
+  z-index: 1000;
+}
+
+.sidebar li.active::after,
+li:hover::after {
+  content: "";
+  background: url(../images/Rectangle2.png);
+  width: 12px;
+  height: 15px;
+  position: absolute;
+  bottom: -15px;
+  right: 0px;
+  z-index: 1000;
+}
+
+.sidebar li:hover i {
   color: white;
   border-radius: 8px;
   background: #ea7c69;
   box-shadow: 0px 8px 24px 0px rgba(234, 124, 105, 0.32);
+}
+
+.sidebar li:hover {
+  background: #252836;
 }
 
 /* Functions */
-
 #all {
   width: 100%;
   height: 100vh;
@@ -139,6 +167,7 @@ html {
 #all .div.active {
   transform: translateX(0);
   width: 500px;
+  height: 100vh;
   visibility: visible;
 }
 
@@ -209,6 +238,7 @@ html {
 }
 
 #all .div .title {
+  display: flex;
   color: #fff;
   font-family: Barlow;
   font-size: 28px;
@@ -270,7 +300,7 @@ html {
 }
 
 #all .div.orderHistory ul {
-  height: 100%;
+  height: auto;
   overflow-y: auto;
 }
 
@@ -349,7 +379,8 @@ html {
   cursor: pointer;
 }
 
-#all .account .orderHistoryBtn {
+#all .account .orderHistoryBtn,
+#all .account .orderHistoryBtnAcc {
   width: 440px;
   height: 88px;
   display: flex;
@@ -359,7 +390,6 @@ html {
   border-radius: 8px;
   padding: 17px;
   gap: 25px;
-
   color: #fff;
   font-family: Barlow;
   font-size: 16px;
@@ -381,11 +411,13 @@ html {
   display: none;
 }
 
-#all .account .orderHistoryBtn i {
+#all .account .orderHistoryBtn i,
+#all .account .orderHistoryBtnAcc i {
   font-size: 24px;
 }
 
-#all .account .orderHistoryBtn:hover {
+#all .account .orderHistoryBtn:hover,
+#all .account .orderHistoryBtnAcc:hover {
   background: rgba(234, 124, 105, 0.26);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   cursor: pointer;
@@ -397,6 +429,11 @@ html {
   flex-direction: column;
   align-items: start;
   justify-content: start;
+  overflow-y: auto;
+}
+
+#all .ordersList::-webkit-scrollbar {
+  display: none;
 }
 
 #all .ordersList .title {
@@ -408,37 +445,49 @@ html {
   padding-right: 50px;
 }
 
-#all .ordersList .btns {
+#all .ordersList .btns1 {
   display: flex;
   align-items: center;
   justify-content: start;
   gap: 10px;
 }
 
-#all .ordersList .btns button {
+#all .ordersList .btns1 button {
   padding: 7px 12px;
   gap: 10px;
   border-radius: 8px;
-  background: #ea7c69;
-  border: none;
-  color: #fff;
+  border: 1px solid var(--base-dark-line, #393c49);
+  background: var(--base-dark-bg-2, #1f1d2b);
+  color: #ea7c69;
   font-size: 14px;
   font-weight: 600;
   line-height: 140%;
 }
 
+#all .ordersList .btns1 button:hover {
+  background: #ea7c69;
+  color: #fff;
+  border: none;
+}
+
+#all .ordersList .btns1 button.active {
+  background: #ea7c69;
+  color: #fff;
+  border: none;
+}
+
 #all .ordersList .allOrders {
   width: 100%;
-  height: 550px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 #all .ordersList .allOrders img {
   width: 100px;
   height: 110px;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
@@ -540,7 +589,6 @@ html {
   border-radius: 8px;
   border: 1px solid var(--primary-color, #ea7c69);
   background: none;
-
   font-size: 20px;
   color: #ea7c69;
 }
@@ -564,18 +612,17 @@ html {
   line-height: 140%;
   cursor: pointer;
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 /* Main */
-
 main {
   width: 1350px;
   padding: 35px 65px;
-  margin-left: 150px;
+  margin-left: 100px;
 }
 
 /* Header */
-
 header {
   width: 100%;
   display: flex;
@@ -624,6 +671,13 @@ header .top .search input {
   padding-left: 60px;
 }
 
+header .top .search input::-moz-placeholder {
+  color: #abbbc2;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+}
+
 header .top .search input::placeholder {
   color: #abbbc2;
   font-size: 16px;
@@ -639,7 +693,6 @@ header .top .search i {
 }
 
 /* Menu */
-
 header .menu {
   width: 100%;
   height: 30px;
@@ -678,7 +731,6 @@ header .menu li.active {
 }
 
 /* Dishes */
-
 .column {
   width: 100%;
   display: flex;
@@ -787,17 +839,14 @@ header .menu li.active {
 .column .dishes {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: start;
-  gap: 70px;
-  column-gap: 50px;
-  padding-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 30px;
+  padding-bottom: 10px;
 }
 
 .column .dishes .dish {
-  width: 240px;
+  width: 250px;
   height: 340px;
   display: flex;
   margin-top: 100px;
@@ -824,6 +873,7 @@ header .menu li.active {
 .column .dishes .dish img {
   width: 200px;
   height: 200px;
+  -o-object-fit: cover;
   object-fit: cover;
   position: absolute;
   bottom: 250px;
@@ -880,7 +930,6 @@ header .menu li.active {
   border: 0;
   margin-top: 40px;
   cursor: pointer;
-
   color: #fff;
   font-size: 20px;
   font-weight: 600;
@@ -889,21 +938,23 @@ header .menu li.active {
 
 .noItem {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   color: white;
   font-size: 70px;
   display: none;
 }
 
 .number {
-  position: relative;
-  bottom: 80px;
+  position: absolute;
+  bottom: 50px;
   left: 60px;
   color: #fff;
   font-size: 25px;
   cursor: pointer;
+}
+
+.sidebar li#ordersBtn {
+  position: relative;
 }
 
 #all .disASub {
@@ -914,6 +965,7 @@ header .menu li.active {
   align-items: center;
   justify-content: center;
   gap: 30px;
+  margin-bottom: 50px;
 }
 
 #all .disASub .flex {
@@ -986,9 +1038,27 @@ header .menu li.active {
   gap: 8px;
   border-radius: 8px;
   border: 1px solid #abbbc2;
-  background: #252836;
+  background: #1f1d2b;
   color: #abbbc2;
   font-size: 16px;
+  position: relative;
+  cursor: pointer;
+}
+
+.payment .content .content__card.active {
+  border: 1px solid #abbbc2;
+  background: #252836;
+  color: white;
+}
+.payment .content .content__card.active .check {
+  display: block;
+}
+
+.payment .content .content__card .check {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  display: none;
 }
 
 .payment form {
@@ -1084,10 +1154,6 @@ header .menu li.active {
   opacity: 1;
 }
 
-.payment input[type="password"] {
-  letter-spacing: 50px;
-}
-
 .payment .top__ .dropdown__.open h3 {
   width: 100%;
   height: 66px;
@@ -1162,6 +1228,16 @@ header .menu li.active {
   color: #ea7c69;
 }
 
+.alertB {
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 10px;
+}
+
 .alert {
   width: 1000px;
   height: 50px;
@@ -1172,9 +1248,8 @@ header .menu li.active {
   align-items: center;
   justify-content: center;
   position: fixed;
-  left: 300px;
   border-radius: 10px;
-  background: #1f1d2b;
+  background: #ea7c69;
   color: white;
   font-size: 24px;
 }
@@ -1185,58 +1260,73 @@ header .menu li.active {
   top: 50px;
 }
 
+.qty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #393c49;
+}
+
+.qty p {
+  color: #fff;
+  font-family: Barlow;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.qty .qty1 {
+  display: flex;
+  gap: 30px;
+}
+
 @media only screen and (max-width: 430px) {
-  .alert{
+  .alert {
     left: 0;
     width: 370px;
     font-size: 16px;
     padding: 10px;
-    ml10
+    margin-left: 10px;
   }
   main {
     margin: 0;
     padding: 10px;
   }
-
   header .top {
     flex-direction: column;
     align-items: start;
     gap: 30px;
   }
-
   header .top .name h1 {
     font-size: 28px;
   }
-
   .column .top h2 {
     font-size: 18px;
   }
-
   .column .top .dropdown.items {
-    width: 130px;
+    width: 120px;
   }
-
   .column .top #dropdownopen {
-    width: 130px;
+    width: 120px;
   }
-
   header .menu {
-    gap: 70px;
+    gap: 10px;
     width: 370px;
     flex-wrap: nowrap;
     overflow: auto;
   }
-
-  header .menu li:first-child {
-    margin-left: 350px;
+  header .menu::-webkit-scrollbar {
+    display: none;
   }
-
+  header .menu li:first-child {
+    margin-left: 50px;
+  }
   header .menu li {
     white-space: nowrap;
     display: flex;
     font-size: 16px;
   }
-
   .BIG {
     width: 100%;
     height: 10vh;
@@ -1248,7 +1338,6 @@ header .menu li.active {
     left: 0;
     z-index: 1000;
   }
-
   .sidebar {
     width: 430px;
     height: 100px;
@@ -1258,106 +1347,116 @@ header .menu li.active {
     justify-content: space-between;
     align-items: center;
   }
-
+  .sidebar li, .sidebar li.active{
+    padding: 0;
+    height: 50px;
+  }
   .sidebar #functionsBtn {
     margin: 0;
   }
-
   .sidebar #ordersBtn {
     margin: 0;
     padding: 0;
     order: 4;
   }
-
   .sidebar #homeBtn {
     order: 3;
   }
-
+  .sidebar li.active::after, .sidebar li.active::before, .sidebar li:hover::after, .sidebar li:hover::before{
+    background: none;
+  }
   .sidebar li:nth-child(4) {
     order: 2;
   }
-
   .sidebar #accountBtn {
     margin: 0;
     order: 5;
   }
-
   .sidebar li:nth-child(3),
   .sidebar li:nth-child(5),
   .sidebar li:nth-child(6) {
     display: none;
   }
-
   .column .dishes {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin-bottom: 70px;
+    padding-bottom: 70px;
   }
-
   #all .div.active {
     width: 410px;
   }
-
   #all .ordersList .paymentBtn {
-    width: 370px;
-    margin-bottom: 200px;
+    width: 330px;
+    margin: 200px auto;
   }
-
   #all .ordersList .order .bottom input {
     width: 260px;
   }
-
   #all .account .orderHistoryBtn,
-  #all .account .profile {
+  #all .account .profile,
+  #all .account .orderHistoryBtnAcc {
     width: 370px;
   }
-
   .payment .input input {
     width: 370px;
   }
-
   .payment .inputs input {
     width: 170px;
   }
-
   .payment .top__ .dropdown__.items__ {
     width: 170px;
   }
-
   #all .div.orderHistory ul {
     margin-bottom: 200px;
   }
-
   #all .div.information ul {
-    height: 440px;
+    width: auto;
+    height: auto;
     margin-bottom: 200px;
   }
-
   #all .div.information ul li {
-    width: 370px;
+    width: auto;
     height: 70px;
   }
-
   .number {
     z-index: 10000;
-    bottom: 20px;
-    left: 225px;
+    top: 20px;
   }
-
   #all .orders .content button {
-    width: 430px;
-    margin: 200px 0;
+    width: 370px;
+    margin: 200px auto;
   }
-
   .payment .btns {
     margin-bottom: 150px;
   }
-
   #all {
     left: 0;
     top: 0;
   }
-
   #all .div {
     right: 0;
+  }
+
+  .sidebar li.active {
+    background: none;
+  }
+
+  .sidebar li:hover {
+    background: none;
+  }
+
+  .column .top .dropdown {
+    border: none;
+  }
+
+  .noItem {
+    font-size: 40px;
+  }
+
+  #all .div ul {
+    width: 370px;
   }
 }
